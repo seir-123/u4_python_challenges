@@ -4,16 +4,42 @@
 #  1) The Time Stone: Lets get cosmic here and begin working with Time.
 
 # - First, lets create a function that converts Minutes to Seconds (1 ->60, 5 -> 300)
+def minutes_to_seconds(minutes):
+    return minutes * 60
+print(minutes_to_seconds(1))
+
 # -  Then take it up a step further, converting Hours into seconds (1 -> 3600)
+def hours_to_seconds(hours):
+    return hours * 3600
+print(hours_to_seconds(1))
+
 # -  We're on the right track here, how many seconds are in a day
+def days_to_seconds(days):
+    return days * 24 * 3600
+print(days_to_seconds(1))
+
 # - How many Hours are in the month of June? 
+def hours_in_june():
+    return 30 * 24
+print(hours_in_june())
+
 # - How many Minutes are in the month of August?
+def minutes_in_august():
+    return 31 * 24 * 60
+print(minutes_in_august())
  
  
  # Bonus -> Without singing the old showtune in your head, how many Minutes are there in a year? 
  # In days, in weeks, in cups of coffee?
 
+def minutes_in_year():
+    return 365 * 24 * 60
+print(minutes_in_year())
 
+def minutes_in_week():
+    return 7 * 24 * 60
+print(minutes_in_week())
+    
 # ---------------------------------
 #      Solution Goes Here ->
 # ---------------------------------
@@ -31,6 +57,22 @@
 # ---------------------------------
 
 
+def mid(string):
+    length = len(string)
+
+    # If the length of the string is odd, there is one middle letter
+    if length % 2 == 1:
+        middle_index = length // 2
+        return string[middle_index]
+
+    # If the length of the string is even, there is no middle letter
+    else:
+        return ""
+
+print(mid('MOTOR')) # "T" returns
+print(mid('ab')) # blank string returns
+
+
 # ### 3) Hide the credit card number
 # Write a function in Python that accepts a credit card number. It should return a string where all the characters are hidden with an asterisk except the last four. For example, if the function gets sent "1234567894444", then it should return "*********4444".
 
@@ -38,6 +80,18 @@
 # ---------------------------------
 #      Solution Goes Here ->
 # ---------------------------------
+
+def hide_credit_card(card_number):
+    #number of characters to hide
+    chars_to_hide = len(card_number) - 4
+    # replaces with * other than last 4
+    hidden_card_number = "*" * chars_to_hide + card_number[-4:]
+
+    return hidden_card_number
+
+credit_card_number = "111122223333"
+hidden_card = hide_credit_card(credit_card_number)
+print(hidden_card)
 
 
 
@@ -47,12 +101,7 @@
 # For example, consider the following dictionary:
 
 # ```
-# statuses = {
-#     "John": "online",
-#     "Paul": "offline",
-#     "George": "online",
-#     "Ringo": "offline"
-# }
+
 
 # ```
 
@@ -65,6 +114,26 @@
 #      Solution Goes Here ->
 # ---------------------------------
 
+def online_count(statuses):
+    #starting count at 0
+    online_users = 0
+
+    for status in statuses.values():
+        if status == "online":
+            online_users += 1
+    
+    return online_users
+
+statuses = {
+    "John": "online",
+    "Paul": "offline",
+    "George": "online",
+    "Ringo": "offline"
+}
+
+users_online = online_count(statuses)
+print(users_online) 
+
 
 
 #  5) Give me the discount
@@ -74,6 +143,19 @@
 # ---------------------------------
 #      Solution Goes Here ->
 # ---------------------------------
+
+def with_discount(full_price, discount_percent):
+    #calculating discount
+    discount_amount = full_price * (discount_percent / 100)
+
+    #discounted price
+    discounted_price = full_price - discount_amount
+    return discounted_price
+
+full_price = 10
+discount_percent = 15
+solution = with_discount(full_price, discount_percent)
+print(solution)
 
 
 #  6) Pythagorean Theorum
@@ -86,6 +168,21 @@
 #      Solution Goes Here ->
 # ---------------------------------
 
+def hypotenouse_length(adjacent, opposite):
+    #squaring the lengths
+    adjacent_squared = adjacent ** 2
+    opposite_squared = opposite ** 2
+
+    #hypotenouse square
+    hypotenouse_squared = adjacent_squared + opposite_squared
+
+    #square root of hypotenouse
+    hypotenouse = hypotenouse_squared ** .5
+    return hypotenouse
+adjacent_leg = 4
+opposite_leg = 3
+solution = hypotenouse_length(adjacent_leg, opposite_leg)
+print(solution)
 
 #  7) Fibonacci Sequence 
 # Everyone's favorite Math Problem!
@@ -98,3 +195,19 @@
 # ---------------------------------
 #      Solution Goes Here ->
 # ---------------------------------
+
+def fibonacci_intervals(num1, num2, n_intervals=9):
+    fibonacci_sequence = [num1, num2]
+
+    for _ in range(n_intervals):
+        next_number = num1 + num2
+        fibonacci_sequence.append(next_number)
+
+        num1, num2 = num2, next_number
+
+    return fibonacci_sequence
+
+first_num = 0
+second_num = 1
+next_nine_intervals = fibonacci_intervals(first_num, second_num, n_intervals=9)
+print(next_nine_intervals)
